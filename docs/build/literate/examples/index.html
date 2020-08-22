@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><title>Examples · BioMakie</title><link href="https://fonts.googleapis.com/css?family=Lato|Roboto+Mono" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/fontawesome.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/solid.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/brands.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet" type="text/css"/><script>documenterBaseURL="../.."</script><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" data-main="../../assets/documenter.js"></script><script src="../../siteinfo.js"></script><script src="../../../versions.js"></script><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../../assets/themes/documenter-dark.css" data-theme-name="documenter-dark"/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../../assets/themes/documenter-light.css" data-theme-name="documenter-light" data-theme-primary/><script src="../../assets/themeswap.js"></script></head><body><div id="documenter"><nav class="docs-sidebar"><div class="docs-package-name"><span class="docs-autofit">BioMakie</span></div><form class="docs-search" action="../../search/"><input class="docs-search-query" id="documenter-search-query" name="q" type="text" placeholder="Search docs"/></form><ul class="docs-menu"><li><a class="tocitem" href="../../">BioMakie.jl</a></li><li class="is-active"><a class="tocitem" href>Examples</a><ul class="internal"><li><a class="tocitem" href="#The-simplest-example-model-1"><span>The simplest example model</span></a></li><li><a class="tocitem" href="#Testing-out-series-decomposition-1"><span>Testing out series decomposition</span></a></li><li><a class="tocitem" href="#Differential-Equations-1"><span>Differential Equations</span></a></li><li><a class="tocitem" href="#Phylogenetic-tree-1"><span>Phylogenetic tree</span></a></li><li><a class="tocitem" href="#GraphRecipes-1"><span>GraphRecipes</span></a></li></ul></li></ul><div class="docs-version-selector field has-addons"><div class="control"><span class="docs-label button is-static is-size-7">Version</span></div><div class="docs-selector control is-expanded"><div class="select is-fullwidth is-size-7"><select id="documenter-version-selector"></select></div></div></div></nav><div class="docs-main"><header class="docs-navbar"><nav class="breadcrumb"><ul class="is-hidden-mobile"><li class="is-active"><a href>Examples</a></li></ul><ul class="is-hidden-tablet"><li class="is-active"><a href>Examples</a></li></ul></nav><div class="docs-right"><a class="docs-edit-link" href="https://github.com/kool7d/BioMakie.jl.git" title="Edit on GitHub"><span class="docs-icon fab"></span><span class="docs-label is-hidden-touch">Edit on GitHub</span></a><a class="docs-settings-button fas fa-cog" id="documenter-settings-button" href="#" title="Settings"></a><a class="docs-sidebar-button fa fa-bars is-hidden-desktop" id="documenter-sidebar-button" href="#"></a></div></header><article class="content" id="documenter-page"><pre><code class="language-none">using AbstractPlotting, CairoMakie, MakieRecipes; nothing# hide
+using MakieRecipes.RecipesPipeline; using MakieRecipes.RecipesPipeline: PlotUtils; using MakieRecipes.Colors: @colorant_str; nothing # hide</code></pre><pre><code class="language-julia">using Makie, MakieRecipes</code></pre><h2 id="The-simplest-example-model-1"><a class="docs-heading-anchor" href="#The-simplest-example-model-1">The simplest example model</a><a class="docs-heading-anchor-permalink" href="#The-simplest-example-model-1" title="Permalink"></a></h2><pre><code class="language-none">using MakieRecipes.RecipesBase
+
+struct T end
+
+RecipesBase.@recipe function plot(::T, n = 1; customcolor = :green)
+    markershape --&gt; :auto        # if markershape is unset, make it :auto
+    markercolor :=  customcolor  # force markercolor to be customcolor
+    xrotation   --&gt; 45           # if xrotation is unset, make it 45
+    zrotation   --&gt; 90           # if zrotation is unset, make it 90
+    rand(10,n)                   # return the arguments (input data) for the next recipe
+end
+
+recipeplot(T(); seriestype = :path)
+
+AbstractPlotting.save(&quot;basic.svg&quot;, AbstractPlotting.current_scene()); nothing #hide</code></pre><h2 id="Testing-out-series-decomposition-1"><a class="docs-heading-anchor" href="#Testing-out-series-decomposition-1">Testing out series decomposition</a><a class="docs-heading-anchor-permalink" href="#Testing-out-series-decomposition-1" title="Permalink"></a></h2><pre><code class="language-none">sc = Scene()
+recipeplot!(sc, rand(10, 2); seriestype = :scatter)
+recipeplot!(sc, 1:10, rand(10, 1); seriestype = :path)
+
+AbstractPlotting.save(&quot;series.svg&quot;, AbstractPlotting.current_scene()); nothing #hide</code></pre><h2 id="Differential-Equations-1"><a class="docs-heading-anchor" href="#Differential-Equations-1">Differential Equations</a><a class="docs-heading-anchor-permalink" href="#Differential-Equations-1" title="Permalink"></a></h2><pre><code class="language-none">using OrdinaryDiffEq, StochasticDiffEq, DiffEqNoiseProcess</code></pre><h3 id="A-simple-exponential-growth-model-1"><a class="docs-heading-anchor" href="#A-simple-exponential-growth-model-1">A simple exponential growth model</a><a class="docs-heading-anchor-permalink" href="#A-simple-exponential-growth-model-1" title="Permalink"></a></h3><pre><code class="language-none">f(u,p,t) = 1.01.*u
+u0 = [1/2, 1]
+tspan = (0.0,1.0)
+prob = ODEProblem(f,u0,tspan)
+sol = solve(prob, Tsit5(), reltol=1e-8, abstol=1e-8)
+
+recipeplot(sol)
+
+AbstractPlotting.save(&quot;exp.svg&quot;, AbstractPlotting.current_scene()); nothing #hide</code></pre><h3 id="Matrix-DiffEq-1"><a class="docs-heading-anchor" href="#Matrix-DiffEq-1">Matrix DiffEq</a><a class="docs-heading-anchor-permalink" href="#Matrix-DiffEq-1" title="Permalink"></a></h3><pre><code class="language-none">A  = [1. 0  0 -5
+      4 -2  4 -3
+     -4  0  0  1
+      5 -2  2  3]
+u0 = rand(4,2)
+tspan = (0.0,1.0)
+f(u,p,t) = A*u
+prob = ODEProblem(f,u0,tspan)
+sol = solve(prob, Tsit5(), reltol=1e-8, abstol=1e-8)
+
+recipeplot(sol)
+
+AbstractPlotting.save(&quot;mat.svg&quot;, AbstractPlotting.current_scene()); nothing #hide</code></pre><h3 id="Stochastic-DiffEq-1"><a class="docs-heading-anchor" href="#Stochastic-DiffEq-1">Stochastic DiffEq</a><a class="docs-heading-anchor-permalink" href="#Stochastic-DiffEq-1" title="Permalink"></a></h3><pre><code class="language-none">f(du,u,p,t) = (du .= u)
+g(du,u,p,t) = (du .= u)
+u0 = rand(4,2)
+
+W = WienerProcess(0.0,0.0,0.0)
+prob = SDEProblem(f,g,u0,(0.0,1.0),noise=W)
+sol = solve(prob,SRIW1())
+
+recipeplot(sol)
+
+AbstractPlotting.save(&quot;stochastic.svg&quot;, AbstractPlotting.current_scene()); nothing #hide</code></pre><h3 id="Animating-a-differential-equation-solution-1"><a class="docs-heading-anchor" href="#Animating-a-differential-equation-solution-1">Animating a differential equation solution</a><a class="docs-heading-anchor-permalink" href="#Animating-a-differential-equation-solution-1" title="Permalink"></a></h3><p>You can update arguments and attributes arbitrarily, and the recipe pipeline is rerun.</p><pre><code class="language-none">function lorenz(du, u, p, t)
+    du[1] = p[1]*(u[2]-u[1])
+    du[2] = u[1]*(p[2]-u[3]) - u[2]
+    du[3] = u[1]*u[2] - p[3]*u[3]
+end
+
+prob = ODEProblem(lorenz, [1., 5., 10.], (0., 100.), (10.0, 28.0, 8/3))
+
+ρ = Node(28.0)
+
+sol = @lift solve(remake(prob; p = (10.0, $ρ, 8/3)), Tsit5())
+
+sc = recipeplot(sol)
+
+ylims!(sc, -30, 70) # avoid jitter when animating
+
+record(sc, &quot;lorenz.gif&quot;, LinRange(0, 35, 100)) do ρᵢ
+    ρ[] = ρᵢ
+end</code></pre><h2 id="Phylogenetic-tree-1"><a class="docs-heading-anchor" href="#Phylogenetic-tree-1">Phylogenetic tree</a><a class="docs-heading-anchor-permalink" href="#Phylogenetic-tree-1" title="Permalink"></a></h2><pre><code class="language-none">using Phylo
+
+assetpath = joinpath(dirname(pathof(MakieRecipes)), &quot;..&quot;, &quot;docs&quot;, &quot;src&quot;, &quot;assets&quot;)
+hummers = open(t -&gt; parsenewick(t, NamedPolytomousTree), joinpath(assetpath, &quot;hummingbirds.tree&quot;))
+
+evolve(tree) = Phylo.map_depthfirst((val, node) -&gt; val + randn(), 0., tree, Float64)
+
+trait = evolve(hummers)
+
+scp = recipeplot(
+    hummers;
+    treetype = :fan,
+    line_z = trait,
+    linewidth = 5,
+    showtips = false,
+    cgrad = :RdYlBu,
+    seriestype = :path,
+    scale_plot = false, # Makie attributes can be used here as well!
+    show_axis = false
+)
+
+AbstractPlotting.save(&quot;phylo.svg&quot;, AbstractPlotting.current_scene()); nothing #hide</code></pre><h3 id="Animation-with-different-colormaps-(changing-attributes)-1"><a class="docs-heading-anchor" href="#Animation-with-different-colormaps-(changing-attributes)-1">Animation with different colormaps (changing attributes)</a><a class="docs-heading-anchor-permalink" href="#Animation-with-different-colormaps-(changing-attributes)-1" title="Permalink"></a></h3><p>You can update arguments and attributes arbitrarily, and the recipe pipeline is rerun.</p><pre><code class="language-none">record(scp, &quot;phylo_colormaps.gif&quot;, PlotUtils.cgradients(:colorcet), framerate = 3) do cmap
+    scp.plots[1].cgrad[] = cmap
+end</code></pre><h2 id="GraphRecipes-1"><a class="docs-heading-anchor" href="#GraphRecipes-1">GraphRecipes</a><a class="docs-heading-anchor-permalink" href="#GraphRecipes-1" title="Permalink"></a></h2><pre><code class="language-none">using GraphRecipes
+using GraphRecipes: GraphPlot</code></pre><p>In tis case, we don&#39;t need access to all of the functions which GraphRecipes provides - just the <code>GraphPlot</code> struct, which is used for recipe dispatch.  The rest is handled by the GraphRecipes internals.</p><h3 id="The-simplest-graph-recipe-1"><a class="docs-heading-anchor" href="#The-simplest-graph-recipe-1">The simplest graph recipe</a><a class="docs-heading-anchor-permalink" href="#The-simplest-graph-recipe-1" title="Permalink"></a></h3><p>Because <code>userplot</code> is unsupported, we have to use the low-level interface to user plot recipes, by wrapping our arguments in the userplot type.  Arguments must be supplied as a <code>Tuple</code> or some other iterable.</p><pre><code class="language-none">recipeplot(
+    GraphPlot(
+        (
+        [0  1  1;
+         1  0  1;
+         1  1  0],
+         )
+    );
+    show_axis = false,
+    scale_plot = false
+)
+
+AbstractPlotting.save(&quot;simplegraph.svg&quot;, AbstractPlotting.current_scene()); nothing #hide</code></pre><h3 id="Undirected-graph-with-node-labels-and-sizes-1"><a class="docs-heading-anchor" href="#Undirected-graph-with-node-labels-and-sizes-1">Undirected graph with node labels and sizes</a><a class="docs-heading-anchor-permalink" href="#Undirected-graph-with-node-labels-and-sizes-1" title="Permalink"></a></h3><pre><code class="language-none">n = 15
+A = Float64[ rand() &lt; 0.5 ? 0 : rand() for i=1:n, j=1:n]
+for i=1:n
+    A[i, 1:i-1] = A[1:i-1, i]
+    A[i, i] = 0
+end
+
+recipeplot(
+        GraphPlot((A,));
+        markersize = 0.2,
+        node_weights = 1:n,
+        markercolor = range(colorant&quot;yellow&quot;, stop=colorant&quot;red&quot;, length=n),
+        names = 1:n,
+        fontsize = 10,
+        linecolor = :darkgrey,
+        show_axis = false,
+        scale_plot = false
+    )
+
+AbstractPlotting.save(&quot;undigraph.svg&quot;, AbstractPlotting.current_scene()); nothing #hide</code></pre><h3 id="Multigraphs-1"><a class="docs-heading-anchor" href="#Multigraphs-1">Multigraphs</a><a class="docs-heading-anchor-permalink" href="#Multigraphs-1" title="Permalink"></a></h3><pre><code class="language-none">recipeplot(GraphPlot(([[1,1,2,2],[1,1,1],[1]],)); names=&quot;node_&quot;.*string.(1:3), nodeshape=:circle, self_edge_size=0.25, show_axis = false, scale_plot = false)
+
+AbstractPlotting.save(&quot;digraph.svg&quot;, AbstractPlotting.current_scene()); nothing #hide</code></pre><h3 id="Julia-AST-1"><a class="docs-heading-anchor" href="#Julia-AST-1">Julia AST</a><a class="docs-heading-anchor-permalink" href="#Julia-AST-1" title="Permalink"></a></h3><pre><code class="language-none">code = quote
+    function mysum(list)
+        out = 0
+        for value in list
+            out += value
+        end
+        out
+    end
+end
+
+recipeplot(code; fontsize = 12, shorten = 0.01, axis_buffer = 0.15, nodeshape = :rect)
+AbstractPlotting.save(&quot;ast.svg&quot;, AbstractPlotting.current_scene()); nothing #hide</code></pre><h3 id="Type-tree-with-GraphRecipes-1"><a class="docs-heading-anchor" href="#Type-tree-with-GraphRecipes-1">Type tree with GraphRecipes</a><a class="docs-heading-anchor-permalink" href="#Type-tree-with-GraphRecipes-1" title="Permalink"></a></h3><pre><code class="language-none">recipeplot(AbstractFloat; method = :tree, fontsize = 10)
+AbstractPlotting.save(&quot;typetree.svg&quot;, AbstractPlotting.current_scene()); nothing #hide</code></pre><hr/><p><em>This page was generated using <a href="https://github.com/fredrikekre/Literate.jl">Literate.jl</a>.</em></p></article><nav class="docs-footer"><a class="docs-footer-prevpage" href="../../">« BioMakie.jl</a></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> on <span class="colophon-date" title="Friday 21 August 2020 23:38">Friday 21 August 2020</span>. Using Julia version 1.4.2.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>
