@@ -9,6 +9,12 @@ julia:
 notifications:
   email: false
 after_success:
+  - julia -e 'Pkg.add("Documenter")'
+  - julia -e 'ENV["DOCUMENTER_DEBUG"] = "true"; cd(Pkg.dir("ReactiveBasics", "docs")); include("make.jl")'
+  # push coverage results to Coveralls
+  - julia -e 'cd(Pkg.dir("ReactiveBasics")); Pkg.add("Coverage"); using Coverage; Coveralls.submit(Coveralls.process_folder())'
+  # push coverage results to Codecov
+  - julia -e 'cd(Pkg.dir("ReactiveBasics")); Pkg.add("Coverage"); using Coverage; Codecov.submit(Codecov.process_folder())'
   - julia -e 'using Pkg; Pkg.add("Coverage"); using Coverage; Codecov.submit(process_folder())'
 jobs:
   allow_failures:
