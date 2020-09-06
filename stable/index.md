@@ -2,7 +2,7 @@
      ABOUT
     ============================== -->
 
-\begin{:section, title="BioMakie", name="About"}
+\begin{:section, name="About"}
 
 \lead{PkgPage.jl is based upon [Franklin.jl](https://github.com/tlienart/Franklin.jl) and makes it easy to create a beautiful landing page for a package in less than 10 minutes.}
 
