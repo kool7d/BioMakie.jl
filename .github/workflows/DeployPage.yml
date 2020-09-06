@@ -2,7 +2,7 @@ name: Build and Deploy
 on:
   push:
     branches:
-      - gh-pages
+      - master
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
@@ -42,7 +42,7 @@ jobs:
             using NodeJS;
             run(`$(npm_cmd()) install highlight.js purgecss`);
             import PkgPage;
-            PkgPage.optimize(input="stable", output="stable")'
+            PkgPage.optimize(input="stable", output="")'
     - name: Build and Deploy
       uses: JamesIves/github-pages-deploy-action@releases/v3
       with:
