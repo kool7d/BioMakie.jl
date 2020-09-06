@@ -19,7 +19,6 @@ The latter allows you to plug in values that you would have defined here.
              deployed page to be in a subfolder e.g.: `YourPackage.jl/web/`.
 -->
 @def title       = "PkgPage.jl"
-@def prepath     = "PkgPage.jl"
 @def description = """
                    Create a beautiful landing page for your package in less
                    than 10 minutes.
@@ -85,7 +84,6 @@ The latter allows you to plug in values that you would have defined here.
 
 @def add_github_view  = true
 @def add_github_star  = true
-@def github_repo      = "tlienart/PkgPage.jl"
 
 <!-- SECTION LAYOUT
 NOTE:
