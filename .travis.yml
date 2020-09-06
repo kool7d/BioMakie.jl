@@ -2,12 +2,9 @@
 language: julia
 os:
   - linux
-  - osx
 julia:
   - 1.4
   - nightly
-notifications:
-  email: false
 after_success:
   - julia -e 'Pkg.add("Documenter")'
   - julia -e 'ENV["DOCUMENTER_DEBUG"] = "true"; cd(Pkg.dir("ReactiveBasics", "docs")); include("make.jl")'
@@ -16,16 +13,10 @@ after_success:
   # push coverage results to Codecov
   - julia -e 'cd(Pkg.dir("ReactiveBasics")); Pkg.add("Coverage"); using Coverage; Codecov.submit(Codecov.process_folder())'
   - julia -e 'using Pkg; Pkg.add("Coverage"); using Coverage; Codecov.submit(process_folder())'
-jobs:
+  - julia -e 'using Pkg; Pkg.add("Documenter"); using BioMakie; include(joinpath(dirname(pathof(BioMakie)), "..", "docs", "make.jl"))'
+notifications:
+  email: false
+matrix:
   allow_failures:
     - julia: nightly
-  fast_finish: true
-  include:
-    - stage: Documentation
-      julia: 1.4
-      script: julia --project=docs -e '
-          using Pkg;
-          Pkg.develop(PackageSpec(path=pwd()));
-          Pkg.instantiate();
-          include("docs/make.jl");'
-      after_success: skip
+    - julia: 1.4
