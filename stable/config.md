@@ -18,7 +18,8 @@ The latter allows you to plug in values that you would have defined here.
              `prepath` to an empty string. Finally, adjust this if you want the
              deployed page to be in a subfolder e.g.: `YourPackage.jl/web/`.
 -->
-@def title       = "PkgPage.jl"
+@def title       = "BioMakie.jl"
+@def prepath = "BioMakie/stable/"
 @def description = """
                    Create a beautiful landing page for your package in less
                    than 10 minutes.
