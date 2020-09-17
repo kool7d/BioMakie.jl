@@ -19,7 +19,7 @@
 </style>
 <link rel="icon" href="/BioMakie.jl/assets/favicon.png">
 
-   <title>Proteins</title>  
+   <title>Protein Structures</title>  
 </head>
 <body>
   <div id="layout">
@@ -37,15 +37,21 @@
     </div>
     <div id="main"> <!-- Closed in foot -->
       <div class="header">
-        <h1>Proteins</h1>
+        <h1>Protein Structures</h1>
       </div>
 
 
 <!-- Content appended here -->
 <div class="franklin-content"><h1 id="proteins"><a href="#proteins">Proteins</a></h1>
+<p>You can load a Protein Structure from the PDB &#40;Protein Data Bank&#41; using its ID like so:</p>
+<pre><code class="julia hljs">julia&gt; pstruc1 = viewstruc(<span class="hljs-string">&quot;2VB1&quot;</span>)  <span class="hljs-comment"># opens a &#x27;Scene&#x27; and returns a &#x27;StructureView&#x27;</span></code></pre>
+<p>A <code>StructureView</code> is an object that contains the relevant information about the protein along with the <code>Scene</code> and <code>Layout</code> which describe the interface.  </p>
+<p>You can similarly load a Multiple Sequence Alignment from the Pfam database using its ID like so:</p>
+<pre><code class="julia hljs">julia&gt; msa1 = viewmsa(<span class="hljs-string">&quot;PF00062&quot;</span>)  <span class="hljs-comment"># opens a &#x27;Scene&#x27; and returns an &#x27;MSAView&#x27;</span></code></pre>
+<p>An <code>MSAView</code> contains the relevant information about the protein sequences in the alignment along with the <code>Scene</code> and <code>Layout</code> which describe the interface.</p>
 <div class="page-foot">
   <div class="copyright">
-    &copy; Daniel Kool. Last modified: September 14, 2020. Website built with <a href="https://github.com/tlienart/Franklin.jl">Franklin.jl</a>.
+    &copy; Daniel Kool. Last modified: September 17, 2020. Website built with <a href="https://github.com/tlienart/Franklin.jl">Franklin.jl</a>.
   </div>
 </div>
 </div><!-- CONTENT ENDS HERE -->

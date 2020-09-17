@@ -4,7 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   
-  
+   <link rel="stylesheet" href="/BioMakie.jl/libs/highlight/github.min.css">
+   
   <link rel="stylesheet" href="/BioMakie.jl/css/franklin.css">
 <link rel="stylesheet" href="/BioMakie.jl/css/pure.css">
 <link rel="stylesheet" href="/BioMakie.jl/css/side-menu.css">
@@ -41,10 +42,23 @@
 
 
 <!-- Content appended here -->
-<div class="franklin-content"><h1 id="what"><a href="#what">What?</a></h1>
+<div class="franklin-content"><h1 id="description"><a href="#description">Description</a></h1>
+<p>BioMakie.jl is a package designed to facilitate visual investigation of biological data. It aims to provide extra tools to view and measure differences between data of such things as protein structures and sequences. If you have ever been staring at a command line or a REPL thinking about how much easier it would be if you had some graphical controls, then maybe BioMakie can be of some help&#33;</p>
+<p>BioMakie utilizes other packages in the BioJulia ecosystem like BioStructures.jl, and outside packages like MIToS.jl to perform comparisons, load data, and to do most of the computation/numerical analysis. Makie <code>Node</code> objects can contain data and be tracked. Any changes or updates to the data inside these <code>Node</code>s will be heard by the <code>Node</code> and this can drive event chains that update many interdependent values and their graphical representations immediately.</p>
+<p>For more examples of what Makie can do, visit the documentation at https://makie.juliaplots.org/stable/</p>
+<h1 id="setup"><a href="#setup">Setup</a></h1>
+<pre><code class="julia hljs"><span class="hljs-comment"># in the REPL</span>
+]add BioMakie
+
+<span class="hljs-comment"># elsewhere</span>
+<span class="hljs-keyword">using</span> Pkg
+Pkg.add(<span class="hljs-string">&quot;BioMakie&quot;</span>)
+
+<span class="hljs-comment"># import the package</span>
+<span class="hljs-keyword">using</span> BioMakie</code></pre>
 <div class="page-foot">
   <div class="copyright">
-    &copy; Daniel Kool. Last modified: September 14, 2020. Website built with <a href="https://github.com/tlienart/Franklin.jl">Franklin.jl</a>.
+    &copy; Daniel Kool. Last modified: September 17, 2020. Website built with <a href="https://github.com/tlienart/Franklin.jl">Franklin.jl</a>.
   </div>
 </div>
 </div><!-- CONTENT ENDS HERE -->
@@ -52,6 +66,10 @@
   </div> <!-- end of id=layout -->
   <script src="/BioMakie.jl/libs/pure/ui.min.js"></script>
   
+  
+      
+
+
   
 </body>
 </html>
