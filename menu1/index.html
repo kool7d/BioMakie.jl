@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  
+
    <link rel="stylesheet" href="/BioMakie.jl/libs/highlight/github.min.css">
-   
+
   <link rel="stylesheet" href="/BioMakie.jl/css/franklin.css">
 <link rel="stylesheet" href="/BioMakie.jl/css/pure.css">
 <link rel="stylesheet" href="/BioMakie.jl/css/side-menu.css">
@@ -20,7 +20,7 @@
 </style>
 <link rel="icon" href="/BioMakie.jl/assets/favicon.png">
 
-   <title>Basic Usage</title>  
+   <title>Basic Usage</title>
 </head>
 <body>
   <div id="layout">
@@ -28,6 +28,10 @@
     <a href="#menu" id="menuLink" class="menu-link"><span></span></a>
     <div id="menu">
       <div class="pure-menu">
+        <form id="lunrSearchForm" name="lunrSearchForm">
+          <input class="search-input" name="q" placeholder="Enter search term" type="text">
+          <input type="submit" value="Search" formaction="/BioMakie.jl/search/index.html" style="visibility:hidden">
+        </form>
         <ul class="pure-menu-list">
           <li class="pure-menu-item "><a href="/BioMakie.jl/" class="pure-menu-link">Home</a></li>
           <li class="pure-menu-item pure-menu-selected"><a href="/BioMakie.jl/menu1/" class="pure-menu-link">Setup</a></li>
@@ -57,11 +61,11 @@
       </div> <!-- end of id=main -->
   </div> <!-- end of id=layout -->
   <script src="/BioMakie.jl/libs/pure/ui.min.js"></script>
-  
-  
-      
 
 
-  
+
+
+
+
 </body>
 </html>
