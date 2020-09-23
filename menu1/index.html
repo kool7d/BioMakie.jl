@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="/BioMakie.jl/css/franklin.css">
 <link rel="stylesheet" href="/BioMakie.jl/css/pure.css">
 <link rel="stylesheet" href="/BioMakie.jl/css/side-menu.css">
+<link rel="stylesheet" href="/BioMakie.jl/css/extra.css">
 <!-- style adjustments -->
 <style>
 .franklin-content{padding-left:10%;}
@@ -19,7 +20,7 @@
 </style>
 <link rel="icon" href="/BioMakie.jl/assets/favicon.png">
 
-   <title>Setup</title>  
+   <title>Basic Usage</title>  
 </head>
 <body>
   <div id="layout">
@@ -37,15 +38,19 @@
     </div>
     <div id="main"> <!-- Closed in foot -->
       <div class="header">
-        <h1>Setup</h1>
+        <h1>Basic Usage</h1>
       </div>
 
 
 <!-- Content appended here -->
-<div class="franklin-content"><h1 id="setup"><a href="#setup">Setup</a></h1>
+<div class="franklin-content"><h1 id="basic_usage"><a href="#basic_usage">Basic Usage</a></h1>
+<p>After the package is imported, you can try it out by loading up a structure from the Protein Data Bank like so:</p>
+<pre><code class="julia hljs">julia&gt; lysozyme1 = viewstruc(<span class="hljs-string">&quot;2VB1&quot;</span>)</code></pre>
+<p>The first time you load a visualization, it might take a minute. Subsequent load times will be shorter.</p>
+<h1></h1>
 <div class="page-foot">
   <div class="copyright">
-    &copy; Daniel Kool. Last modified: September 10, 2020. Website built with <a href="https://github.com/tlienart/Franklin.jl">Franklin.jl</a>.
+    &copy; Daniel Kool. Last modified: September 23, 2020. Website built with <a href="https://github.com/tlienart/Franklin.jl">Franklin.jl</a>.
   </div>
 </div>
 </div><!-- CONTENT ENDS HERE -->
