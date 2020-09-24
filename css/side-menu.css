@@ -1,6 +1,6 @@
 body {
-    background: #000000;
-    color: #363636;
+    background: #fff;
+    color: #000000;
 }
 
 .header h2 {
@@ -92,7 +92,7 @@ appears on the left side of the page.
     left: 0;
     bottom: 0;
     z-index: 1000; /* so the menu or its navicon stays above all content */
-    background: #fcfcfc;
+    background: #000000;
     box-shadow: inset -14px 0px 5px -12px rgb(210,210,210);
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
@@ -101,7 +101,7 @@ appears on the left side of the page.
     All anchors inside the menu should be styled like this.
     */
     #menu a {
-        color: #999;
+        color: #fff;
         border: none;
         padding: 0.6em 0 0.6em 0.6em;
     }
