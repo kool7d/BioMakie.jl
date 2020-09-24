@@ -1,6 +1,6 @@
 body {
     background: #fff;
-    color: black;
+    color: #363636;
 }
 
 .header h2 {
@@ -54,7 +54,7 @@ The content `<div>` is where all your content goes.
 
 .header {
      margin: 0;
-     color: #black;
+     color: #333;
      text-align: center;
      padding: 2.5em 2em 0;
      border-bottom: 1px solid #eee;
@@ -66,7 +66,7 @@ The content `<div>` is where all your content goes.
     }
      .header h2 {
         font-weight: 300;
-        color: #black;
+        color: #ccc;
         padding: 0;
         margin-top: 0;
     }
@@ -74,7 +74,7 @@ The content `<div>` is where all your content goes.
 .content-subhead {
     margin: 50px 0 20px 0;
     font-weight: 300;
-    color: #999;
+    color: #888;
 }
 
 
@@ -92,7 +92,7 @@ appears on the left side of the page.
     left: 0;
     bottom: 0;
     z-index: 1000; /* so the menu or its navicon stays above all content */
-    background: #fff;
+    background: #fcfcfc;
     box-shadow: inset -14px 0px 5px -12px rgb(210,210,210);
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
@@ -101,7 +101,7 @@ appears on the left side of the page.
     All anchors inside the menu should be styled like this.
     */
     #menu a {
-        color: black;
+        color: #999;
         border: none;
         padding: 0.6em 0 0.6em 0.6em;
     }
@@ -125,7 +125,7 @@ appears on the left side of the page.
         /*
         Change color of the anchor links on hover/focus.
         */
-
+        
 
     /*
     This styles the selected menu item `<li>`.
@@ -134,7 +134,7 @@ appears on the left side of the page.
         This styles a link within a selected menu item `<li>`.
         */
         #menu .pure-menu-selected a {
-            color: black;
+            color: #fff;
         }
 
     /*
@@ -142,7 +142,7 @@ appears on the left side of the page.
     */
     #menu .pure-menu-heading {
         font-size: 110%;
-        color: black;
+        color: #fff;
         margin: 0;
     }
 
@@ -162,7 +162,7 @@ small screens.
     display: block; /* show this only on small screens */
     top: 0;
     left: 0; /* "#menu width" */
-    background: black;
+    background: #000;
     background: rgba(0,0,0,0.7);
     font-size: 10px; /* change this value to increase/decrease button size */
     z-index: 10;
@@ -173,7 +173,7 @@ small screens.
 
     .menu-link:hover,
     .menu-link:focus {
-        background: #111;
+        background: #000;
     }
 
     .menu-link span {
@@ -184,7 +184,7 @@ small screens.
     .menu-link span,
     .menu-link span:before,
     .menu-link span:after {
-        background-color: #111;
+        background-color: #fff;
         width: 100%;
         height: 0.2em;
     }
