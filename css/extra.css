@@ -26,7 +26,7 @@
     font-family: 'Lato', Arial;
     font-size: 25px;
     text-decoration: none;
-    color: #222;
+    color: #000000;
     text-rendering: optimizeLegibility;
     padding: 0;
     margin: 0;
@@ -66,16 +66,16 @@ li.pure-menu-sublist-title {
     padding-left: 8px;
     font-family: 'Lato', Arial;
     font-size: 18px;
-    color: #222;
+    color: #111111;
     text-rendering: optimizeLegibility;
 }
 #menu .pure-menu li a:hover,
 #menu .pure-menu li a:focus {
-    background: darkgray;
-    color: white;
+    background: gray;
+    color: #000000;
 }
 #menu .pure-menu-selected a.pure-menu-link {
-    background: #333;
+    background: #111111;
     color: white;
 }
 
