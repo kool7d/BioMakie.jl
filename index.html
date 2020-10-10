@@ -1,84 +1,18 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="/BioMakie.jl/libs/highlight/github.min.css">
-  <link rel="stylesheet" href="/BioMakie.jl/css/franklin.css">
-  <link rel="stylesheet" href="/BioMakie.jl/css/pure.css">
-  <link rel="stylesheet" href="/BioMakie.jl/css/side-menu.css">
-  <link rel="stylesheet" href="/BioMakie.jl/css/extra.css">
-  <!-- <link rel="stylesheet" href="/BioMakie.jl/libs/highlight/styles/atom-one-dark.css"> -->
-  <!-- style adjustments -->
-  <style>
-  .franklin-content{padding-left:10%;}
-  @media (min-width: 940px) {
-    .franklin-content {width: 640px; margin-left: 0px; padding-left: 80px;}
-    .header {width: 700px;}
-  }
-  </style>
-  <link rel="icon" href="/BioMakie.jl/assets/favicon.png">
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><title>Home · BioMakie</title><link href="https://fonts.googleapis.com/css?family=Lato|Roboto+Mono" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/fontawesome.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/solid.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/brands.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet" type="text/css"/><script>documenterBaseURL="."</script><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" data-main="assets/documenter.js"></script><script src="siteinfo.js"></script><script src="../versions.js"></script><link class="docs-theme-link" rel="stylesheet" type="text/css" href="assets/themes/documenter-dark.css" data-theme-name="documenter-dark"/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="assets/themes/documenter-light.css" data-theme-name="documenter-light" data-theme-primary/><script src="assets/themeswap.js"></script></head><body><div id="documenter"><nav class="docs-sidebar"><div class="docs-package-name"><span class="docs-autofit">BioMakie</span></div><form class="docs-search" action="search/"><input class="docs-search-query" id="documenter-search-query" name="q" type="text" placeholder="Search docs"/></form><ul class="docs-menu"><li class="is-active"><a class="tocitem" href>Home</a></li><li><a class="tocitem" href="page1/">Page1</a></li></ul><div class="docs-version-selector field has-addons"><div class="control"><span class="docs-label button is-static is-size-7">Version</span></div><div class="docs-selector control is-expanded"><div class="select is-fullwidth is-size-7"><select id="documenter-version-selector"></select></div></div></div></nav><div class="docs-main"><header class="docs-navbar"><nav class="breadcrumb"><ul class="is-hidden-mobile"><li class="is-active"><a href>Home</a></li></ul><ul class="is-hidden-tablet"><li class="is-active"><a href>Home</a></li></ul></nav><div class="docs-right"><a class="docs-edit-link" href="https://github.com/kool7d/BioMakie.jl/blob/master/docs/src/index.md" title="Edit on GitHub"><span class="docs-icon fab"></span><span class="docs-label is-hidden-touch">Edit on GitHub</span></a><a class="docs-settings-button fas fa-cog" id="documenter-settings-button" href="#" title="Settings"></a><a class="docs-sidebar-button fa fa-bars is-hidden-desktop" id="documenter-sidebar-button" href="#"></a></div></header><article class="content" id="documenter-page"><h1 id="BioMakie"><a class="docs-heading-anchor" href="#BioMakie">BioMakie</a><a id="BioMakie-1"></a><a class="docs-heading-anchor-permalink" href="#BioMakie" title="Permalink"></a></h1><ul><li><a href="#BioMakie.MSAView"><code>BioMakie.MSAView</code></a></li><li><a href="#BioMakie.StructureView"><code>BioMakie.StructureView</code></a></li><li><a href="#BioMakie.msaview-Tuple{String}"><code>BioMakie.msaview</code></a></li><li><a href="#BioMakie.structureview-Tuple{String}"><code>BioMakie.structureview</code></a></li><li><a href="#BioMakie.viewmsa-Tuple{String}"><code>BioMakie.viewmsa</code></a></li><li><a href="#BioMakie.viewstruc-Tuple{String}"><code>BioMakie.viewstruc</code></a></li><li><a href="#BioMakie.viewstrucs-Tuple{AbstractArray{String,N} where N}"><code>BioMakie.viewstrucs</code></a></li></ul><article class="docstring"><header><a class="docstring-binding" id="BioMakie.MSAView" href="#BioMakie.MSAView"><code>BioMakie.MSAView</code></a> — <span class="docstring-category">Type</span></header><section><div><pre><code class="language-julia">MSAView is an object/container to hold relevant data for convenience.
 
-   <title>BioMakie</title>
-   <script src="/BioMakie.jl/libs/lunr/lunr.min.js"></script>
-   <script src="/BioMakie.jl/libs/lunr/lunr_index.js"></script>
-   <script src="/BioMakie.jl/libs/lunr/lunrclient.min.js"></script>
-</head>
-<body>
-  <div id="layout">
-    <!-- Menu toggle / hamburger icon -->
-    <a href="#menu" id="menuLink" class="menu-link"><span></span></a>
-    <div id="menu">
-      <div class="pure-menu">
-        <a href="https://github.com/kool7d/BioMakie.jl" id="menu-logo-link">
-          <div class="menu-logo">
-            <p><strong>BioMakie.jl</strong></p>
-          </div>
-        </a>
-        <form id="lunrSearchForm" name="lunrSearchForm">
-          <input class="search-input" name="q" placeholder="Enter search term" type="text">
-          <input type="submit" value="Search" formaction="/BioMakie.jl/search/index.html" style="visibility:hidden">
-        </form>
+Fields:
+	msa				- The multiple sequence alignment
+	annotations		- Labels and metadata
+	matrix			- The matrix of the alignment
+	scenes			- Holds 2 scenes: scene[1] is everything, scene[2] is the main scene
+	layout			- The Makie Layout containing these scenes and controls</code></pre></div><a class="docs-sourcelink" target="_blank" href="https://github.com/kool7d/BioMakie.jl/blob/192b1563e864c3fc7529efb85270c30f3b7d246f/src/msa.jl#L1-L10">source</a></section></article><article class="docstring"><header><a class="docstring-binding" id="BioMakie.StructureView" href="#BioMakie.StructureView"><code>BioMakie.StructureView</code></a> — <span class="docstring-category">Type</span></header><section><div><pre><code class="language-julia">StructureView is an object/container to hold relevant data for convenience.
 
-        <ul class="pure-menu-list">
-          <li class="pure-menu-item pure-menu-selected"><a href="/BioMakie.jl/" class="pure-menu-link">Home</a></li>
-          <li class="pure-menu-item "><a href="/BioMakie.jl/menu1/" class="pure-menu-link">Basics</a></li>
-          <li class="pure-menu-item "><a href="/BioMakie.jl/menu2/" class="pure-menu-link">Proteins</a></li>
-          <li class="pure-menu-item "><a href="/BioMakie.jl/menu3/" class="pure-menu-link">More</a></li>
-        </ul>
-      </div>
-    </div>
-    <div id="main"> <!-- Closed in foot -->
-      <div class="header">
-        <h1>BioMakie</h1>
-      </div>
-
-<!-- Content appended here -->
-<div class="franklin-content"><h1 id="description"><a href="#description">Description</a></h1>
-<p>BioMakie.jl is a package designed to facilitate visual investigation of biological data. It aims to provide extra tools to view and measure differences between data of such things as protein structures and sequences. If you have ever been staring at a command line or a REPL thinking about how much easier it would be if you had some graphical controls, then maybe BioMakie can be of some help&#33;</p>
-<p>BioMakie utilizes other packages in the BioJulia ecosystem like BioStructures.jl, and outside packages like MIToS.jl to perform comparisons, load data, and to do most of the computation/numerical analysis. Makie <code>Node</code> objects can contain data and be tracked. Any changes or updates to the data inside these <code>Node</code>s will be heard by the <code>Node</code> and this can drive event chains that update many interdependent values and their graphical representations immediately.</p>
-<p>For more examples of what Makie can do, visit the documentation at https://makie.juliaplots.org/stable/</p>
-<h1 id="setup"><a href="#setup">Setup</a></h1>
-<pre><code class="julia hljs"><span class="hljs-comment"># in the REPL</span>
-]add BioMakie
-
-<span class="hljs-comment"># elsewhere</span>
-<span class="hljs-keyword">using</span> Pkg
-Pkg.add(<span class="hljs-string">&quot;BioMakie&quot;</span>)
-
-<span class="hljs-comment"># import the package</span>
-<span class="hljs-keyword">using</span> BioMakie</code></pre>
-<div class="page-foot">
-  <div class="copyright">
-    &copy; Daniel Kool. Last modified: September 23, 2020. Website built with <a href="https://github.com/tlienart/Franklin.jl">Franklin.jl</a>.
-  </div>
-</div>
-</div><!-- CONTENT ENDS HERE -->
-      </div> <!-- end of id=main -->
-  </div> <!-- end of id=layout -->
-  <script src="/BioMakie.jl/libs/pure/ui.min.js"></script>
-  <script src="/BioMakie.jl/libs/highlight/highlight.pack.js"></script>
-
-<script>hljs.initHighlightingOnLoad();hljs.configure({tabReplace: '    '});</script>
-</body>
-</html>
+Fields:
+	protein			- The protein structure
+	models			- Structure models
+	chains			- Structure chains
+	residues		- Structure residues
+	atoms			- Structure atoms
+	scenes			- Holds 2 scenes: scene[1] is everything, scene[2] is the main scene
+	layout			- The Makie Layout containing these scenes and controls</code></pre></div><a class="docs-sourcelink" target="_blank" href="https://github.com/kool7d/BioMakie.jl/blob/192b1563e864c3fc7529efb85270c30f3b7d246f/src/structure.jl#L1-L12">source</a></section></article><article class="docstring"><header><a class="docstring-binding" id="BioMakie.msaview-Tuple{String}" href="#BioMakie.msaview-Tuple{String}"><code>BioMakie.msaview</code></a> — <span class="docstring-category">Method</span></header><section><div><pre><code class="language-julia">msaview(str::String; kwargs...)</code></pre><p>Return an MSAView object with Pfam ID <code>&quot;str&quot;</code>.</p><p><strong>Optional Arguments:</strong></p><ul><li>filetype ()  		   - Type of file to retrieve, default <code>Stockholm</code></li><li>aligntype ()  	   - Type of alignment to retrieve, default <code>&quot;full&quot;</code></li></ul></div><a class="docs-sourcelink" target="_blank" href="https://github.com/kool7d/BioMakie.jl/blob/192b1563e864c3fc7529efb85270c30f3b7d246f/src/msa.jl#L27-L36">source</a></section></article><article class="docstring"><header><a class="docstring-binding" id="BioMakie.structureview-Tuple{String}" href="#BioMakie.structureview-Tuple{String}"><code>BioMakie.structureview</code></a> — <span class="docstring-category">Method</span></header><section><div><pre><code class="language-julia">structureview(str::String; kwargs...)</code></pre><p>Return a StructureView object with PDB ID <code>&quot;str&quot;</code>.</p><p><strong>Optional Arguments:</strong></p><ul><li>dir (String)         - Directory for PDB structure, default <code>&quot;&quot;</code></li><li>showbonds (Boolean)  - To display bonds, default <code>true</code></li><li>colors (String)      - Color set for atoms, default <code>&quot;element&quot;</code></li></ul></div><a class="docs-sourcelink" target="_blank" href="https://github.com/kool7d/BioMakie.jl/blob/192b1563e864c3fc7529efb85270c30f3b7d246f/src/structure.jl#L47-L57">source</a></section></article><article class="docstring"><header><a class="docstring-binding" id="BioMakie.viewmsa-Tuple{String}" href="#BioMakie.viewmsa-Tuple{String}"><code>BioMakie.viewmsa</code></a> — <span class="docstring-category">Method</span></header><section><div><pre><code class="language-julia">viewmsa(str::String; kwargs...)</code></pre><p>Visualize multiple sequence alignment with Pfam ID <code>&quot;str&quot;</code>.</p><p><strong>Optional Arguments:</strong></p><ul><li>dir (String)         		- Directory of PDB structure, default <code>&quot;&quot;</code></li><li>width (Int)         		- Width for MSA grid, default <code>40</code></li><li>height (Int)        		- Height for MSA grid, default <code>20</code></li><li>resolution (Tuple{Int})   - Resolution of the scene, default <code>(1500, 600)</code></li></ul></div><a class="docs-sourcelink" target="_blank" href="https://github.com/kool7d/BioMakie.jl/blob/192b1563e864c3fc7529efb85270c30f3b7d246f/src/msa.jl#L52-L63">source</a></section></article><article class="docstring"><header><a class="docstring-binding" id="BioMakie.viewstruc-Tuple{String}" href="#BioMakie.viewstruc-Tuple{String}"><code>BioMakie.viewstruc</code></a> — <span class="docstring-category">Method</span></header><section><div><pre><code class="language-julia">viewstruc(str::{String}; kwargs...)</code></pre><p>Visualize structure with PDB ID <code>&quot;str&quot;</code>.</p><p><strong>Optional Arguments:</strong></p><ul><li>dir (String)         - Directory of PDB structure, default <code>&quot;../data/PDB&quot;</code></li><li>showbonds (Boolean)  - To display bonds, default <code>true</code></li><li>colors (String)      - Color set for atoms, default <code>&quot;element&quot;</code></li></ul></div><a class="docs-sourcelink" target="_blank" href="https://github.com/kool7d/BioMakie.jl/blob/192b1563e864c3fc7529efb85270c30f3b7d246f/src/structure.jl#L130-L140">source</a></section></article><article class="docstring"><header><a class="docstring-binding" id="BioMakie.viewstrucs-Tuple{AbstractArray{String,N} where N}" href="#BioMakie.viewstrucs-Tuple{AbstractArray{String,N} where N}"><code>BioMakie.viewstrucs</code></a> — <span class="docstring-category">Method</span></header><section><div><pre><code class="language-julia">viewstrucs(strs::AbstractArray{String}; kwargs...)</code></pre><p>Visualize all structures in the array <code>strs</code>.</p><p><strong>Optional Arguments:</strong></p><ul><li>dir (String)         - Directory of PDB structure, default <code>&quot;&quot;</code></li><li>showbonds (Boolean)  - To display bonds, default <code>true</code></li><li>colors (String)      - Color set for atoms, default <code>&quot;element&quot;</code></li><li>resolution (Tuple{Int})   - Resolution of the scene, default <code>(1500, 600)</code></li></ul></div><a class="docs-sourcelink" target="_blank" href="https://github.com/kool7d/BioMakie.jl/blob/192b1563e864c3fc7529efb85270c30f3b7d246f/src/structure.jl#L77-L88">source</a></section></article></article><nav class="docs-footer"><a class="docs-footer-nextpage" href="page1/">Page1 »</a><div class="flexbox-break"></div><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> on <span class="colophon-date" title="Saturday 10 October 2020 03:31">Saturday 10 October 2020</span>. Using Julia version 1.5.2.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>
